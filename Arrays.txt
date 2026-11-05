@@ -1,0 +1,311 @@
+Q1. Print all elements of an array
+class Main {
+    public static void main(String[] args) {
+
+        int arr[] = {10, 20, 30, 40, 50};
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
+        }
+    }
+}
+
+
+Q2. Find the sum of array elements
+class Main {
+    public static void main(String[] args) {
+
+        int arr[] = {10, 20, 30, 40};
+        int sum = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            sum = sum + arr[i];
+        }
+
+        System.out.println("Sum = " + sum);
+    }
+}
+
+
+Q3. Find the average of array elements
+class Main {
+    public static void main(String[] args) {
+
+        int arr[] = {10, 20, 30, 40};
+        int sum = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+
+        double avg = (double) sum / arr.length;
+
+        System.out.println("Average = " + avg);
+    }
+}
+
+
+Q4. Find the largest element
+class Main {
+    public static void main(String[] args) {
+
+        int arr[] = {10, 50, 20, 80, 30};
+
+        int max = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+
+        System.out.println("Maximum = " + max);
+    }
+}
+
+
+Q5. Find the smallest element
+class Main {
+    public static void main(String[] args) {
+
+        int arr[] = {10, 50, 20, 5, 30};
+
+        int min = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+
+            if (arr[i] < min) {
+                min = arr[i];
+            }
+        }
+
+        System.out.println("Minimum = " + min);
+    }
+}
+
+
+
+Q6. Count even and odd numbers
+class Main {
+    public static void main(String[] args) {
+
+        int arr[] = {10, 15, 20, 25, 30};
+
+        int even = 0, odd = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] % 2 == 0) {
+                even++;
+            } else {
+                odd++;
+            }
+        }
+
+        System.out.println("Even = " + even);
+        System.out.println("Odd = " + odd);
+    }
+}
+
+
+Q7. Search an element in an array
+class Main {
+    public static void main(String[] args) {
+
+        int arr[] = {10, 20, 30, 40, 50};
+
+        int search = 30;
+        boolean found = false;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] == search) {
+                found = true;
+                break;
+            }
+        }
+
+        if (found) {
+            System.out.println("Element found");
+        } else {
+            System.out.println("Element not found");
+        }
+    }
+}
+
+
+Q8. Reverse an array
+class Main {
+    public static void main(String[] args) {
+
+        int arr[] = {10, 20, 30, 40, 50};
+
+        for (int i = arr.length - 1; i >= 0; i--) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
+
+
+Q9. Copy one array into another
+class Main {
+    public static void main(String[] args) {
+
+        int arr[] = {10, 20, 30, 40};
+
+        int copy[] = new int[arr.length];
+
+        for (int i = 0; i < arr.length; i++) {
+            copy[i] = arr[i];
+        }
+
+        for (int i = 0; i < copy.length; i++) {
+            System.out.print(copy[i] + " ");
+        }
+    }
+}
+
+
+Q10. Count positive and negative numbers
+class Main {
+    public static void main(String[] args) {
+
+        int arr[] = {10, -5, 20, -8, 0};
+
+        int positive = 0, negative = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] > 0) {
+                positive++;
+            } else if (arr[i] < 0) {
+                negative++;
+            }
+        }
+
+        System.out.println("Positive = " + positive);
+        System.out.println("Negative = " + negative);
+    }
+}
+
+
+Q11. Find the second largest element
+class Main {
+    public static void main(String[] args) {
+
+        int arr[] = {10, 50, 30, 80, 40};
+
+        int max = Integer.MIN_VALUE;
+        int second = Integer.MIN_VALUE;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] > max) {
+                second = max;
+                max = arr[i];
+            } 
+            else if (arr[i] > second && arr[i] != max) {
+                second = arr[i];
+            }
+        }
+
+        System.out.println("Second Largest = " + second);
+    }
+}
+
+
+Q12. Sort array in ascending order
+class Main {
+    public static void main(String[] args) {
+
+        int arr[] = {50, 20, 40, 10, 30};
+
+        for (int i = 0; i < arr.length; i++) {
+
+            for (int j = i + 1; j < arr.length; j++) {
+
+                if (arr[i] > arr[j]) {
+
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
+
+
+Q13. Sort array in descending order
+class Main {
+    public static void main(String[] args) {
+
+        int arr[] = {10, 50, 20, 40, 30};
+
+        for (int i = 0; i < arr.length; i++) {
+
+            for (int j = i + 1; j < arr.length; j++) {
+
+                if (arr[i] < arr[j]) {
+
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
+
+
+Q14. Find duplicate elements
+class Main {
+    public static void main(String[] args) {
+
+        int arr[] = {10, 20, 30, 20, 40, 10};
+
+        for (int i = 0; i < arr.length; i++) {
+
+            for (int j = i + 1; j < arr.length; j++) {
+
+                if (arr[i] == arr[j]) {
+                    System.out.println(arr[i]);
+                    break;
+                }
+            }
+        }
+    }
+}
+
+
+Q15. Merge two arrays
+class Main {
+    public static void main(String[] args) {
+
+        int a[] = {10, 20, 30};
+        int b[] = {40, 50, 60};
+
+        int c[] = new int[a.length + b.length];
+
+        for (int i = 0; i < a.length; i++) {
+            c[i] = a[i];
+        }
+
+        for (int i = 0; i < b.length; i++) {
+            c[a.length + i] = b[i];
+        }
+
+        for (int i = 0; i < c.length; i++) {
+            System.out.print(c[i] + " ");
+        }
+    }
+}
