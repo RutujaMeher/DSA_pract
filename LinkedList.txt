@@ -1,0 +1,301 @@
+
+class LinkedList {
+
+    class Node {
+        int data;
+        Node next;
+        Node prev;
+
+        Node(int data) {
+            this.data = data;
+        }
+    }
+
+    Node head;
+
+    // 1. Insert at Beginning
+    void insertBeginning(int data) {
+        Node n = new Node(data);
+        n.next = head;
+        head = n;
+    }
+
+    // 2. Insert at End
+    void insertEnd(int data) {
+        Node n = new Node(data);
+
+        if (head == null) {
+            head = n;
+            return;
+        }
+
+        Node temp = head;
+        while (temp.next != null)
+            temp = temp.next;
+
+        temp.next = n;
+    }
+
+    // 3. Insert at Position (1-based)
+    void insertPosition(int data, int pos) {
+        if (pos < 1) return;
+
+        if (pos == 1) {
+            insertBeginning(data);
+            return;
+        }
+
+        Node temp = head;
+
+        for (int i = 1; i < pos - 1 && temp != null; i++)
+            temp = temp.next;
+
+        if (temp == null) return;
+
+        Node n = new Node(data);
+        n.next = temp.next;
+        temp.next = n;
+    }
+
+    // 4. Delete Beginning
+    void deleteBeginning() {
+        if (head != null)
+            head = head.next;
+    }
+
+    // 5. Delete End
+    void deleteEnd() {
+        if (head == null) return;
+
+        if (head.next == null) {
+            head = null;
+            return;
+        }
+
+        Node temp = head;
+
+        while (temp.next.next != null)
+            temp = temp.next;
+
+        temp.next = null;
+    }
+
+    // 6. Delete by Value
+    void deleteValue(int key) {
+        if (head == null) return;
+
+        if (head.data == key) {
+            head = head.next;
+            return;
+        }
+
+        Node temp = head;
+
+        while (temp.next != null && temp.next.data != key)
+            temp = temp.next;
+
+        if (temp.next != null)
+            temp.next = temp.next.next;
+    }
+
+    // 7. Search
+    boolean search(int key) {
+        Node temp = head;
+
+        while (temp != null) {
+            if (temp.data == key)
+                return true;
+
+            temp = temp.next;
+        }
+
+        return false;
+    }
+
+    // 8. Display
+    void display() {
+        Node temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+
+        System.out.println("null");
+    }
+
+    // 9. Reverse Linked List
+    void reverse() {
+        Node prev = null;
+        Node curr = head;
+
+        while (curr != null) {
+            Node next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        head = prev;
+    }
+
+    // 10. Find Middle Node
+    Node middle() {
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+
+    // 11. Cycle Detection (Floyd's Algorithm)
+    boolean detectCycle() {
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast)
+                return true;
+        }
+
+        return false;
+    }
+
+    // 12. Find Starting Point of Cycle
+    Node cycleStart() {
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                slow = head;
+
+                while (slow != fast) {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+
+                return slow;
+            }
+        }
+
+        return null;
+    }
+
+    // 13. Remove Cycle
+    void removeCycle() {
+        Node start = cycleStart();
+
+        if (start == null) return;
+
+        Node temp = start;
+
+        while (temp.next != start)
+            temp = temp.next;
+
+        temp.next = null;
+    }
+
+    // 14. Nth Node from End
+    Node nthFromEnd(int n) {
+        if (n <= 0) return null;
+
+        Node first = head;
+        Node second = head;
+
+        for (int i = 0; i < n; i++) {
+            if (first == null) return null;
+            first = first.next;
+        }
+
+        while (first != null) {
+            first = first.next;
+            second = second.next;
+        }
+
+        return second;
+    }
+
+    // 15. Remove Duplicates (Sorted List)
+    void removeDuplicates() {
+        Node temp = head;
+
+        while (temp != null && temp.next != null) {
+            if (temp.data == temp.next.data)
+                temp.next = temp.next.next;
+            else
+                temp = temp.next;
+        }
+    }
+
+    // 16. Doubly Linked List - Insert at End
+    void doublyInsert(int data) {
+        Node n = new Node(data);
+
+        if (head == null) {
+            head = n;
+            return;
+        }
+
+        Node temp = head;
+
+        while (temp.next != null)
+            temp = temp.next;
+
+        temp.next = n;
+        n.prev = temp;
+    }
+
+    // 17. Doubly Linked List - Delete by Value
+    void doublyDelete(int key) {
+        Node temp = head;
+
+        while (temp != null && temp.data != key)
+            temp = temp.next;
+
+        if (temp == null) return;
+
+        if (temp.prev != null)
+            temp.prev.next = temp.next;
+        else
+            head = temp.next;
+
+        if (temp.next != null)
+            temp.next.prev = temp.prev;
+    }
+
+    public static void main(String[] args) {
+        LinkedList l = new LinkedList();
+
+        l.insertEnd(10);
+        l.insertEnd(20);
+        l.insertEnd(30);
+        l.insertBeginning(5);
+
+        l.display();
+
+        l.reverse();
+        l.display();
+
+        System.out.println(l.search(20));
+
+        System.out.println(l.middle().data);
+
+        System.out.println(l.detectCycle());
+
+        l.deleteBeginning();
+        l.deleteEnd();
+
+        l.display();
+    }
+}
